@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
-using StackExchange.Redis;
 using TechTalk.SpecFlow;
 
 namespace Dazn.TechTest.Api.IntegrationTests
@@ -10,7 +10,9 @@ namespace Dazn.TechTest.Api.IntegrationTests
     public class UserStreamFeatureSteps
     {
         private HttpClient _client;
-        
+        private HttpResponseMessage _lastResponse;
+        private int _userId;
+
         [BeforeScenario]
         public void Setup()
         {
@@ -19,27 +21,38 @@ namespace Dazn.TechTest.Api.IntegrationTests
         }
 
         [Given(@"user with id (.*) is not streaming video")]
-        public void GivenUserWithIdIsNotStreamingVideo(int userId)
+        public async Task GivenUserWithIdIsNotStreamingVideo(int userId)
         {
-            
+            _userId = userId;
+
+            var response = await _client.DeleteAsync($"user/{userId}/stream");
+            response.EnsureSuccessStatusCode();
+            _lastResponse = response;
         }
         
         [When(@"the stream count is updated (.*) time\(s\)")]
-        public void WhenTheStreamCountIsUpdatedTimes(int times)
+        public async Task WhenTheStreamCountIsUpdatedTimes(int times)
         {
-            ScenarioContext.Current.Pending();
+            for (int i = 0; i < times; i++)
+            {
+                var response = await _client.GetAsync($"user/{_userId}/stream");
+                _lastResponse = response;
+            }
         }
 
         [Then(@"I should get a bad request response with exceeded limit message")]
         public void ThenIShouldGetABadRequestResponseWithExceededLimitMessage()
         {
-            ScenarioContext.Current.Pending();
+            _lastResponse.StatusCode.Should().Be(400);
         }
         
         [Then(@"I should get a response with count of (.*)")]
-        public void ThenIShouldGetAResponseWithCountOf(int count)
+        public async Task ThenIShouldGetAResponseWithCountOf(int expectedCount)
         {
-            ScenarioContext.Current.Pending();
+            _lastResponse.StatusCode.Should().Be(200);
+            int count = await _lastResponse.Content.ReadAsAsync<int>();
+
+            count.Should().Be(expectedCount);
         }
     }
 }

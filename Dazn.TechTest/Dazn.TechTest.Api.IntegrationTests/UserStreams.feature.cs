@@ -99,7 +99,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.When("the stream count is updated 4 times(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the stream count is updated 4 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
  testRunner.Then("I should get a bad request response with exceeded limit message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

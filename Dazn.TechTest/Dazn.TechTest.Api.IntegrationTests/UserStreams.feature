@@ -10,5 +10,5 @@ Scenario: New user can watch stream
 
 Scenario: User can only request 3 streams
 	Given user with id 1 is not streaming video
-	When the stream count is updated 4 times(s)
+	When the stream count is updated 4 time(s)
 	Then I should get a bad request response with exceeded limit message
