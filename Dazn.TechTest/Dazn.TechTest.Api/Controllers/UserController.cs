@@ -43,9 +43,13 @@ namespace Dazn.TechTest.Api.Controllers
         
         [HttpDelete]
         [Route(("{userId}/stream"))]
-        public OkResult ResetStreamCount(int userId)
+        public async Task<OkResult> ResetStreamCount(int userId)
         {
-            //TODO: Finish endpoint
+            IDatabase db = _connectionMultiplexer.GetDatabase();
+            string key = GetRedisStreamKey(userId);
+
+            await db.KeyDeleteAsync(key);
+
             return Ok();
         }
 

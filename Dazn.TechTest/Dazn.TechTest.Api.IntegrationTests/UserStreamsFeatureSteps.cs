@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace Dazn.TechTest.Api.IntegrationTests
 {
     [Binding]
-    public class UserStreamFeatureSteps
+    public class UserStreamsFeatureSteps
     {
         private HttpClient _client;
         private HttpResponseMessage _lastResponse;
@@ -27,7 +27,6 @@ namespace Dazn.TechTest.Api.IntegrationTests
 
             var response = await _client.DeleteAsync($"user/{userId}/stream");
             response.EnsureSuccessStatusCode();
-            _lastResponse = response;
         }
         
         [When(@"the stream count is updated (.*) time\(s\)")]
