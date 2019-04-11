@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 namespace Dazn.TechTest.Api
 {
@@ -18,6 +19,11 @@ namespace Dazn.TechTest.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Address should be from config.
+            services.AddSingleton<IConnectionMultiplexer>(cfg =>
+                ConnectionMultiplexer.Connect("localhost")
+            );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
