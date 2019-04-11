@@ -13,7 +13,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
     [Binding]
     public class UserStreamsFeatureSteps
     {
-        private HttpClient _client;
+        private ApiClient _client;
         private readonly List<HttpResponseMessage> _responses = new List<HttpResponseMessage>();
         private HttpResponseMessage LastResponse => _responses.Last();
 
@@ -23,7 +23,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
         public void Setup()
         {
             var factory = new WebApplicationFactory<Startup>();
-            _client = factory.CreateClient();
+            _client = new ApiClient(factory.CreateClient());
         }
 
         [Given(@"user with id (.*) is not streaming video")]
@@ -31,7 +31,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
         {
             _userId = userId;
 
-            var response = await _client.DeleteAsync($"user/{userId}/stream");
+            var response = await _client.ResetStreamCount(userId);
             response.EnsureSuccessStatusCode();
         }
         
@@ -40,7 +40,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
         {
             for (int i = 0; i < times; i++)
             {
-                var response = await _client.GetAsync($"user/{_userId}/stream");
+                var response = await _client.GetStreamCount(_userId);
                 _responses.Add(response);
             }
         }
@@ -52,7 +52,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
 
             for (int i = 0; i < times; i++)
             {
-                tasks.Add(_client.GetAsync($"user/{_userId}/stream"));
+                tasks.Add(_client.GetStreamCount(_userId));
             }
 
             await Task.WhenAll(tasks);
@@ -68,7 +68,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
             {
                 foreach (var response in lastResponses)
                 {
-                    response.StatusCode.Should().Be(400);
+                    response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
                 }
             }
         }
