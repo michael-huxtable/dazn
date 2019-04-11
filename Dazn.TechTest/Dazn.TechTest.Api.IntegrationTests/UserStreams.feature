@@ -6,9 +6,16 @@
 Scenario: New user can watch stream
 	Given user with id 1 is not streaming video
 	When the stream count is updated 1 time(s)
-	Then I should get a response with count of 1
+	Then the status code of the last response should be 200
+	And the content of the last response should be 1
 
 Scenario: User can only request 3 streams
 	Given user with id 1 is not streaming video
-	When the stream count is updated 4 time(s)
-	Then I should get a bad request response with exceeded limit message
+	When the stream count is updated 7 time(s)
+	Then I should get a bad request response with exceeded limit message for the last 4 requests
+	
+Scenario: User cannot brute force the limit
+	Given user with id 1 is not streaming video
+	When the stream count is updated 500 times in parallel
+	Then I should get a bad request response with exceeded limit message for 497 requests
+	

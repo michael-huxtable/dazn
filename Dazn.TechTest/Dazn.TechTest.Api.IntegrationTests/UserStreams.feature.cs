@@ -83,7 +83,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.When("the stream count is updated 1 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("I should get a response with count of 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the status code of the last response should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the content of the last response should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -93,15 +95,34 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void UserCanOnlyRequest3Streams()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can only request 3 streams", null, ((string[])(null)));
-#line 11
+#line 12
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 12
- testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.When("the stream count is updated 4 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.Then("I should get a bad request response with exceeded limit message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the stream count is updated 7 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("I should get a bad request response with exceeded limit message for the last 4 re" +
+                    "quests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User cannot brute force the limit")]
+        public virtual void UserCannotBruteForceTheLimit()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User cannot brute force the limit", null, ((string[])(null)));
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 18
+ testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.When("the stream count is updated 500 times in parallel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("I should get a bad request response with exceeded limit message for 497 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
