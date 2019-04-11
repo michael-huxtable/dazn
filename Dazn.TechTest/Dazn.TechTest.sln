@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dazn.TechTest.Api", "Dazn.TechTest.Api\Dazn.TechTest.Api.csproj", "{15AB6E30-7AC2-4015-B75C-4D1365130984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dazn.TechTest.Api.IntegrationTests", "Dazn.TechTest.Api.IntegrationTests\Dazn.TechTest.Api.IntegrationTests.csproj", "{B5A1452D-8532-47BA-B4BF-749A9DAEF538}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15AB6E30-7AC2-4015-B75C-4D1365130984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AB6E30-7AC2-4015-B75C-4D1365130984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AB6E30-7AC2-4015-B75C-4D1365130984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AB6E30-7AC2-4015-B75C-4D1365130984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A1452D-8532-47BA-B4BF-749A9DAEF538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A1452D-8532-47BA-B4BF-749A9DAEF538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A1452D-8532-47BA-B4BF-749A9DAEF538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A1452D-8532-47BA-B4BF-749A9DAEF538}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79E8EC9A-879E-4B88-A242-B42EB920D06E}
+	EndGlobalSection
+EndGlobal
