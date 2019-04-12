@@ -20,9 +20,8 @@ namespace Dazn.TechTest.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //Address should be from config.
             services.AddSingleton<IConnectionMultiplexer>(cfg =>
-                ConnectionMultiplexer.Connect("localhost")
+                ConnectionMultiplexer.Connect(Configuration["RedisAddress"])
             );
         }
 

@@ -71,10 +71,10 @@ namespace Dazn.TechTest.Api.IntegrationTests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("New user can watch stream")]
-        public virtual void NewUserCanWatchStream()
+        [NUnit.Framework.DescriptionAttribute("New user can watch 3 streams")]
+        public virtual void NewUserCanWatch3Streams()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New user can watch stream", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New user can watch 3 streams", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -86,6 +86,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the status code of the last response should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
  testRunner.And("the content of the last response should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.When("the stream count is updated 1 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+ testRunner.Then("the status code of the last response should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.And("the content of the last response should be 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.When("the stream count is updated 1 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("the status code of the last response should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.And("the content of the last response should be 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -95,14 +107,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void UserCanOnlyRequest3Streams()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can only request 3 streams", null, ((string[])(null)));
-#line 12
+#line 18
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
+#line 19
  testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
+#line 20
  testRunner.When("the stream count is updated 7 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 21
  testRunner.Then("I should get a bad request response for the last 4 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -113,14 +125,14 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void UserCannotBruteForceTheLimit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User cannot brute force the limit", null, ((string[])(null)));
-#line 17
+#line 23
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 18
+#line 24
  testRunner.Given("user with id 1 is not streaming video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 25
  testRunner.When("the stream count is updated 500 times in parallel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 26
  testRunner.Then("I should get a bad request response for 497 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
