@@ -103,8 +103,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.When("the stream count is updated 7 time(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("I should get a bad request response with exceeded limit message for the last 4 re" +
-                    "quests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get a bad request response for the last 4 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -122,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 19
  testRunner.When("the stream count is updated 500 times in parallel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
- testRunner.Then("I should get a bad request response with exceeded limit message for 497 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get a bad request response for 497 requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

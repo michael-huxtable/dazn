@@ -59,20 +59,6 @@ namespace Dazn.TechTest.Api.IntegrationTests
             _responses.AddRange(tasks.Select(t => t.Result));
         }
 
-        [Then(@"I should get a bad request response with exceeded limit message for the last (.*) requests")]
-        public void ThenIShouldGetABadRequestResponseWithExceededLimitMessageForTheLastRequests(int requestCount)
-        {
-            var lastResponses = _responses.TakeLast(requestCount);
-
-            using (new AssertionScope())
-            {
-                foreach (var response in lastResponses)
-                {
-                    response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-                }
-            }
-        }
-
         [Then(@"the status code of the last response should be (.*)")]
         public void ThenTheStatusCodeOfTheLastResponseShouldBe(int statusCode)
         {
@@ -86,11 +72,26 @@ namespace Dazn.TechTest.Api.IntegrationTests
             count.Should().Be(expectedCount);
         }
 
-        [Then(@"I should get a bad request response with exceeded limit message for (.*) requests")]
-        public void ThenIShouldGetABadRequestResponseWithExceededLimitMessageForRequests(int expectedCount)
+        [Then(@"I should get a bad request response for the last (.*) requests")]
+        public void ThenIShouldGetABadRequestResponseForTheLastRequests(int expectedCount)
+        {
+            var lastResponses = _responses.TakeLast(expectedCount);
+
+            using (new AssertionScope())
+            {
+                foreach (var response in lastResponses)
+                {
+                    response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+                }
+            }
+        }
+        
+        [Then(@"I should get a bad request response for (.*) requests")]
+        public void ThenIShouldGetABadRequestResponseForRequests(int expectedCount)
         {
             var badRequests = _responses.Where(r => r.StatusCode == HttpStatusCode.BadRequest);
             badRequests.Count().Should().Be(expectedCount);
         }
+
     }
 }
