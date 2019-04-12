@@ -14,9 +14,9 @@ namespace Dazn.TechTest.Api.Controllers
             _connectionMultiplexer = connectionMultiplexer;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("{userId}/stream")]
-        public async Task<ActionResult> GetStreamCount(int userId)
+        public async Task<ActionResult> IncrementStreamCount(int userId)
         {
             //Do not validate user is logged in / authenticated,
             //presumed not to be in scope.

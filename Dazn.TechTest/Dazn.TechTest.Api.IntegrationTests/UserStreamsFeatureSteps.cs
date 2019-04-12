@@ -40,7 +40,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
         {
             for (int i = 0; i < times; i++)
             {
-                var response = await _client.GetStreamCount(_userId);
+                var response = await _client.IncrementStreamCount(_userId);
                 _responses.Add(response);
             }
         }
@@ -52,7 +52,7 @@ namespace Dazn.TechTest.Api.IntegrationTests
 
             for (int i = 0; i < times; i++)
             {
-                tasks.Add(_client.GetStreamCount(_userId));
+                tasks.Add(_client.IncrementStreamCount(_userId));
             }
 
             await Task.WhenAll(tasks);

@@ -12,9 +12,9 @@ namespace Dazn.TechTest.Api.IntegrationTests
             _client = client;
         }
 
-        public Task<HttpResponseMessage> GetStreamCount(int userId)
+        public Task<HttpResponseMessage> IncrementStreamCount(int userId)
         {
-            return _client.GetAsync(GetUserStreamUri(userId));
+            return _client.PostAsync(GetUserStreamUri(userId), null);
         }
 
         public Task<HttpResponseMessage> ResetStreamCount(int userId)
