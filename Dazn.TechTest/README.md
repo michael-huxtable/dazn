@@ -19,7 +19,7 @@ BDD via Specflow has been used to test the endpoint. Only integration tests for 
 
 # Notes
 
-The API endpoint is not intended to be publicly accessible, given it is a simple endpoint where if discovered a user could easily abuse the stream count. This endpoint would have to be internal, being used by other APIs and services to maintain the code of streams in a more controller environment.
+The API endpoint is not intended to be publicly accessible, given it is a simple endpoint where if discovered a user could easily abuse the stream count. This endpoint would have to be internal, being used by other APIs and services to maintain the code of streams in a more controlled environment.
 
 # System Scalability
 
